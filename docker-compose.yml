@@ -1,0 +1,86 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: verida-frontend
+    ports:
+      - "3000:80"
+    networks:
+      - verida-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Base de datos SQLite (para desarrollo)
+  # En producción se recomienda usar PostgreSQL
+  db-backup:
+    image: alpine:latest
+    container_name: verida-db-backup
+    volumes:
+      - ./backups:/backups
+    networks:
+      - verida-network
+    command: |
+      sh -c "
+        apk add --no-cache sqlite &&
+        while true; do
+          if [ -f /data/verida.db ]; then
+            sqlite3 /data/verida.db '.backup /backups/verida_backup_$(date +%Y%m%d_%H%M%S).db'
+            find /backups -name 'verida_backup_*.db' -type f -mtime +7 -delete
+          fi
+          sleep 86400
+        done
+      "
+    restart: unless-stopped
+
+  # Servicio de monitoreo (opcional)
+  monitoring:
+    image: prom/node-exporter:latest
+    container_name: verida-monitoring
+    ports:
+      - "9100:9100"
+    networks:
+      - verida-network
+    restart: unless-stopped
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)'
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+
+  # Proxy reverso (opcional para producción)
+  nginx:
+    image: nginx:alpine
+    container_name: verida-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/ssl:/etc/nginx/ssl
+    depends_on:
+      - frontend
+    networks:
+      - verida-network
+    restart: unless-stopped
+    profiles:
+      - production
+
+volumes:
+  nginx-ssl:
+   driver: local
+
+networks:
+  verida-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/16 

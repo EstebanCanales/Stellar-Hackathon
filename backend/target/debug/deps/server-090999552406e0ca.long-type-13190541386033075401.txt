@@ -1,0 +1,1 @@
+impl std::future::Future<Output = Result<Vec<<{type error} as sqlx::Database>::Row>, sqlx::Error>>

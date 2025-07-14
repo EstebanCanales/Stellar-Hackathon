@@ -1,0 +1,44 @@
+[package]
+name = "verida-backend"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Web framework
+actix-web = "4.4"
+actix-cors = "0.7"
+tokio = { version = "1.0", features = ["full"] }
+
+# JSON y serialización
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# HTTP cliente
+reqwest = { version = "0.11", features = ["json"] }
+
+# Criptografía
+sha2 = "0.10"
+hex = "0.4"
+
+# Bases de datos
+sqlx = { version = "0.7", features = ["runtime-tokio-rustls", "sqlite", "chrono", "uuid"] }
+chrono = { version = "0.4", features = ["serde"] }
+
+# Logging
+log = "0.4"
+env_logger = "0.10"
+
+# Utilidades
+uuid = { version = "1.0", features = ["v4", "serde"] }
+anyhow = "1.0"
+
+[workspace]
+members = [
+    "contracts/donation_contract",
+    "contracts/escrow_contract",
+    "contracts/community_contract"
+]
+
+[[bin]]
+name = "server"
+path = "src/main.rs" 

@@ -1,0 +1,10 @@
+/Users/estebancanales/Work/hackton-stellar/backend/target/debug/deps/actix_cors-be1278c9ff0966c4.d: /Users/estebancanales/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/actix-cors-0.7.1/src/lib.rs /Users/estebancanales/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/actix-cors-0.7.1/src/all_or_some.rs /Users/estebancanales/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/actix-cors-0.7.1/src/builder.rs /Users/estebancanales/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/actix-cors-0.7.1/src/error.rs /Users/estebancanales/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/actix-cors-0.7.1/src/inner.rs /Users/estebancanales/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/actix-cors-0.7.1/src/middleware.rs
+
+/Users/estebancanales/Work/hackton-stellar/backend/target/debug/deps/libactix_cors-be1278c9ff0966c4.rmeta: /Users/estebancanales/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/actix-cors-0.7.1/src/lib.rs /Users/estebancanales/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/actix-cors-0.7.1/src/all_or_some.rs /Users/estebancanales/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/actix-cors-0.7.1/src/builder.rs /Users/estebancanales/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/actix-cors-0.7.1/src/error.rs /Users/estebancanales/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/actix-cors-0.7.1/src/inner.rs /Users/estebancanales/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/actix-cors-0.7.1/src/middleware.rs
+
+/Users/estebancanales/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/actix-cors-0.7.1/src/lib.rs:
+/Users/estebancanales/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/actix-cors-0.7.1/src/all_or_some.rs:
+/Users/estebancanales/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/actix-cors-0.7.1/src/builder.rs:
+/Users/estebancanales/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/actix-cors-0.7.1/src/error.rs:
+/Users/estebancanales/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/actix-cors-0.7.1/src/inner.rs:
+/Users/estebancanales/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/actix-cors-0.7.1/src/middleware.rs:

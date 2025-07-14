@@ -1,0 +1,1 @@
+impl std::future::Future<Output = Result<std::option::Option<<{type error} as sqlx::Database>::Row>, sqlx::Error>>
