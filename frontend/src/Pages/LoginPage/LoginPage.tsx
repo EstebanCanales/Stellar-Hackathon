@@ -28,7 +28,7 @@ const LoginPage: React.FC = () => {
       ...prev,
       [name]: value,
     }));
-    setError(""); // Limpiar error al escribir
+    setError(""); // Clear error when typing
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -36,15 +36,15 @@ const LoginPage: React.FC = () => {
     setError("");
     setIsLoading(true);
 
-    // Validaciones básicas
+    // Basic validations
     if (!formData.email || !formData.password) {
-      setError("Por favor completa todos los campos");
+      setError("Please fill in all fields");
       setIsLoading(false);
       return;
     }
 
     if (formData.password.length < 6) {
-      setError("La contraseña debe tener al menos 6 caracteres");
+      setError("Password must be at least 6 characters");
       setIsLoading(false);
       return;
     }
@@ -55,10 +55,10 @@ const LoginPage: React.FC = () => {
       if (success) {
         navigate("/dashboard");
       } else {
-        setError("Credenciales incorrectas");
+        setError("Invalid credentials");
       }
     } catch (error) {
-      setError("Error al iniciar sesión. Inténtalo de nuevo.");
+      setError("Error signing in. Please try again.");
       console.error("Login error:", error);
     } finally {
       setIsLoading(false);
@@ -81,7 +81,7 @@ const LoginPage: React.FC = () => {
           className="inline-flex items-center text-verida-light-green hover:text-white transition-colors mb-8"
         >
           <FaArrowLeft className="mr-2" />
-          Volver a inicio
+          Back to home
         </Link>
 
         {/* Login Card */}
@@ -93,8 +93,8 @@ const LoginPage: React.FC = () => {
                 V
               </span>
             </div>
-            <h1 className="text-3xl font-bold text-white mb-2">Bienvenido</h1>
-            <p className="text-gray-300">Ingresa a tu cuenta Verida</p>
+            <h1 className="text-3xl font-bold text-white mb-2">Welcome</h1>
+            <p className="text-gray-300">Sign in to your Verida account</p>
           </div>
 
           {/* Error Message */}
@@ -112,7 +112,7 @@ const LoginPage: React.FC = () => {
                 htmlFor="email"
                 className="block text-white font-medium mb-2"
               >
-                Correo Electrónico
+                Email Address
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -124,7 +124,7 @@ const LoginPage: React.FC = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  placeholder="tu@email.com"
+                  placeholder="your@email.com"
                   className="w-full pl-12 pr-4 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-verida-green focus:border-transparent transition-all"
                   disabled={isLoading}
                 />
@@ -137,7 +137,7 @@ const LoginPage: React.FC = () => {
                 htmlFor="password"
                 className="block text-white font-medium mb-2"
               >
-                Contraseña
+                Password
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -149,7 +149,7 @@ const LoginPage: React.FC = () => {
                   name="password"
                   value={formData.password}
                   onChange={handleInputChange}
-                  placeholder="Ingresa tu contraseña"
+                  placeholder="Enter your password"
                   className="w-full pl-12 pr-12 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-verida-green focus:border-transparent transition-all"
                   disabled={isLoading}
                 />
@@ -173,10 +173,10 @@ const LoginPage: React.FC = () => {
               {isLoading ? (
                 <>
                   <FaSpinner className="animate-spin mr-2" />
-                  Iniciando sesión...
+                  Signing in...
                 </>
               ) : (
-                "Iniciar Sesión"
+                "Sign In"
               )}
             </button>
           </form>
@@ -184,22 +184,22 @@ const LoginPage: React.FC = () => {
           {/* Demo Credentials */}
           <div className="mt-8 p-4 bg-verida-green/20 rounded-xl border border-verida-green/30">
             <h3 className="text-verida-light-green font-semibold mb-2">
-              🚀 Demo - Credenciales de Prueba:
+              🚀 Demo - Test Credentials:
             </h3>
             <p className="text-gray-300 text-sm mb-1">
               <strong>Email:</strong> demo@verida.org
             </p>
             <p className="text-gray-300 text-sm">
-              <strong>Contraseña:</strong> demo123
+              <strong>Password:</strong> demo123
             </p>
           </div>
 
           {/* Footer */}
           <div className="mt-8 text-center">
             <p className="text-gray-400 text-sm">
-              ¿No tienes cuenta?{" "}
+              Don't have an account?{" "}
               <button className="text-verida-light-green hover:text-white transition-colors font-medium">
-                Regístrate aquí
+                Sign up here
               </button>
             </p>
           </div>
@@ -208,19 +208,19 @@ const LoginPage: React.FC = () => {
         {/* Additional Info */}
         <div className="mt-8 text-center">
           <p className="text-gray-400 text-sm">
-            Al iniciar sesión, aceptas nuestros{" "}
+            By signing in, you agree to our{" "}
             <a
               href="#"
               className="text-verida-light-green hover:text-white transition-colors"
             >
-              Términos de Servicio
+              Terms of Service
             </a>{" "}
-            y{" "}
+            and{" "}
             <a
               href="#"
               className="text-verida-light-green hover:text-white transition-colors"
             >
-              Política de Privacidad
+              Privacy Policy
             </a>
           </p>
         </div>

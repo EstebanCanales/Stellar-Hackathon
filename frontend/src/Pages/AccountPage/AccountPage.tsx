@@ -32,7 +32,7 @@ const AccountPage: React.FC = () => {
   >("profile");
   const [loading, setLoading] = useState(false);
 
-  // Datos de ejemplo del usuario
+  // Example user data
   const userStats = {
     donationsMade: 12,
     validationsDone: 8,
@@ -42,13 +42,13 @@ const AccountPage: React.FC = () => {
     reputationScore: 98,
   };
 
-  // Transacciones de ejemplo
+  // Example transactions
   const transactions: Transaction[] = [
     {
       id: "1",
       type: "donation",
       amount: 500,
-      description: "Donación a Comunidad San José",
+      description: "Donation to San José Community",
       date: "2024-01-15",
       status: "completed",
     },
@@ -56,7 +56,7 @@ const AccountPage: React.FC = () => {
       id: "2",
       type: "validation",
       amount: 25,
-      description: "Validación de entrega - Barrio Las Flores",
+      description: "Delivery validation - Las Flores Neighborhood",
       date: "2024-01-14",
       status: "completed",
     },
@@ -64,7 +64,7 @@ const AccountPage: React.FC = () => {
       id: "3",
       type: "received",
       amount: 50,
-      description: "Recompensa por validación",
+      description: "Validation reward",
       date: "2024-01-13",
       status: "pending",
     },
@@ -86,11 +86,11 @@ const AccountPage: React.FC = () => {
   const getTransactionText = (type: string) => {
     switch (type) {
       case "donation":
-        return "Donación";
+        return "Donation";
       case "validation":
-        return "Validación";
+        return "Validation";
       case "received":
-        return "Recibido";
+        return "Received";
       default:
         return type;
     }
@@ -112,11 +112,11 @@ const AccountPage: React.FC = () => {
   const getStatusText = (status: string) => {
     switch (status) {
       case "completed":
-        return "Completada";
+        return "Completed";
       case "pending":
-        return "Pendiente";
+        return "Pending";
       case "failed":
-        return "Fallida";
+        return "Failed";
       default:
         return status;
     }
@@ -138,9 +138,7 @@ const AccountPage: React.FC = () => {
           <div className="flex justify-center items-center min-h-[60vh]">
             <div className="text-center">
               <div className="verida-spinner mx-auto mb-4"></div>
-              <p className="text-white text-lg">
-                Cargando información del usuario...
-              </p>
+              <p className="text-white text-lg">Loading user information...</p>
             </div>
           </div>
         </div>
@@ -161,10 +159,10 @@ const AccountPage: React.FC = () => {
           <div className="text-center mb-6">
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-2 verida-animate-fadeIn">
               <FaUser className="inline-block mr-3 text-verida-light-green" />
-              Mi Cuenta
+              My Account
             </h1>
             <p className="text-lg text-verida-light-green/80 verida-animate-fadeIn">
-              Gestiona tu perfil y configuración de usuario
+              Manage your profile and user settings
             </p>
           </div>
         </div>
@@ -177,7 +175,7 @@ const AccountPage: React.FC = () => {
               <div className="text-2xl font-bold text-verida-dark-teal">
                 {userStats.donationsMade}
               </div>
-              <div className="text-sm text-verida-dark-teal/70">Donaciones</div>
+              <div className="text-sm text-verida-dark-teal/70">Donations</div>
             </div>
             <div className="verida-card p-6 text-center">
               <IoCheckmark className="text-3xl text-green-600 mb-3 mx-auto" />
@@ -185,7 +183,7 @@ const AccountPage: React.FC = () => {
                 {userStats.validationsDone}
               </div>
               <div className="text-sm text-verida-dark-teal/70">
-                Validaciones
+                Validations
               </div>
             </div>
             <div className="verida-card p-6 text-center">
@@ -194,7 +192,7 @@ const AccountPage: React.FC = () => {
                 {userStats.communitiesHelped}
               </div>
               <div className="text-sm text-verida-dark-teal/70">
-                Comunidades
+                Communities
               </div>
             </div>
             <div className="verida-card p-6 text-center">
@@ -202,7 +200,7 @@ const AccountPage: React.FC = () => {
               <div className="text-2xl font-bold text-verida-dark-teal">
                 {userStats.reputationScore}
               </div>
-              <div className="text-sm text-verida-dark-teal/70">Reputación</div>
+              <div className="text-sm text-verida-dark-teal/70">Reputation</div>
             </div>
           </div>
         </div>
@@ -211,13 +209,13 @@ const AccountPage: React.FC = () => {
         <div className="mb-8 px-4">
           <div className="flex flex-wrap gap-4 justify-center max-w-lg mx-auto">
             {[
-              { value: "profile", label: "Perfil", icon: IoPerson },
+              { value: "profile", label: "Profile", icon: IoPerson },
               {
                 value: "transactions",
-                label: "Transacciones",
+                label: "Transactions",
                 icon: FaHistory,
               },
-              { value: "settings", label: "Configuración", icon: FaCog },
+              { value: "settings", label: "Settings", icon: FaCog },
             ].map((tab) => (
               <button
                 key={tab.value}
@@ -240,7 +238,7 @@ const AccountPage: React.FC = () => {
           {activeTab === "profile" && (
             <div className="max-w-4xl mx-auto">
               <h2 className="text-2xl font-bold text-white text-center mb-6">
-                Información del Perfil
+                Profile Information
               </h2>
 
               <div className="verida-grid verida-grid-1 lg:verida-grid-2 gap-6">
@@ -248,7 +246,7 @@ const AccountPage: React.FC = () => {
                 <div className="verida-card p-6">
                   <h3 className="text-xl font-bold text-verida-dark-teal mb-4 flex items-center">
                     <IoPerson className="mr-3" />
-                    Datos Personales
+                    Personal Data
                   </h3>
                   <div className="space-y-4">
                     <div>
@@ -261,15 +259,15 @@ const AccountPage: React.FC = () => {
                     </div>
                     <div>
                       <label className="block text-verida-dark-teal/70 text-sm mb-1">
-                        Usuario desde
+                        User since
                       </label>
                       <p className="text-verida-dark-teal font-medium">
-                        Enero 2024
+                        January 2024
                       </p>
                     </div>
                     <div>
                       <label className="block text-verida-dark-teal/70 text-sm mb-1">
-                        Total Donado
+                        Total Donated
                       </label>
                       <p className="text-verida-dark-teal font-medium text-xl">
                         ${userStats.totalDonated.toLocaleString()}
@@ -282,7 +280,7 @@ const AccountPage: React.FC = () => {
                 <div className="verida-card p-6">
                   <h3 className="text-xl font-bold text-verida-dark-teal mb-4 flex items-center">
                     <IoWallet className="mr-3" />
-                    Billetera Stellar
+                    Stellar Wallet
                   </h3>
                   <div className="space-y-4">
                     <div>
@@ -295,7 +293,7 @@ const AccountPage: React.FC = () => {
                     </div>
                     <div>
                       <label className="block text-verida-dark-teal/70 text-sm mb-1">
-                        Clave Pública
+                        Public Key
                       </label>
                       <div className="flex items-center gap-2">
                         <p className="text-verida-dark-teal font-mono text-sm truncate">
@@ -311,7 +309,7 @@ const AccountPage: React.FC = () => {
                     </div>
                     <div>
                       <label className="block text-verida-dark-teal/70 text-sm mb-1">
-                        Clave Privada
+                        Private Key
                       </label>
                       <div className="flex items-center gap-2">
                         <p className="text-verida-dark-teal font-mono text-sm truncate">
@@ -340,17 +338,15 @@ const AccountPage: React.FC = () => {
           {activeTab === "transactions" && (
             <div className="max-w-4xl mx-auto">
               <h2 className="text-2xl font-bold text-white text-center mb-6">
-                Historial de Transacciones
+                Transaction History
               </h2>
 
               {transactions.length === 0 ? (
                 <div className="text-center py-12">
                   <FaHistory className="text-6xl text-verida-light-green/30 mx-auto mb-4" />
-                  <p className="text-white text-lg mb-2">
-                    No hay transacciones
-                  </p>
+                  <p className="text-white text-lg mb-2">No transactions</p>
                   <p className="text-verida-light-green/70">
-                    Tus transacciones aparecerán aquí
+                    Your transactions will appear here
                   </p>
                 </div>
               ) : (
@@ -400,19 +396,19 @@ const AccountPage: React.FC = () => {
           {activeTab === "settings" && (
             <div className="max-w-4xl mx-auto">
               <h2 className="text-2xl font-bold text-white text-center mb-6">
-                Configuración
+                Settings
               </h2>
 
               <div className="verida-card p-6">
                 <h3 className="text-xl font-bold text-verida-dark-teal mb-6 flex items-center">
                   <IoSettings className="mr-3" />
-                  Preferencias de la Cuenta
+                  Account Preferences
                 </h3>
 
                 <div className="space-y-6">
                   <div>
                     <h4 className="font-medium text-verida-dark-teal mb-3">
-                      Notificaciones
+                      Notifications
                     </h4>
                     <div className="space-y-2">
                       <label className="flex items-center">
@@ -422,7 +418,7 @@ const AccountPage: React.FC = () => {
                           className="mr-3 rounded"
                         />
                         <span className="text-verida-dark-teal/80">
-                          Notificaciones de donaciones
+                          Donation notifications
                         </span>
                       </label>
                       <label className="flex items-center">
@@ -432,13 +428,13 @@ const AccountPage: React.FC = () => {
                           className="mr-3 rounded"
                         />
                         <span className="text-verida-dark-teal/80">
-                          Notificaciones de validaciones
+                          Validation notifications
                         </span>
                       </label>
                       <label className="flex items-center">
                         <input type="checkbox" className="mr-3 rounded" />
                         <span className="text-verida-dark-teal/80">
-                          Newsletter mensual
+                          Monthly newsletter
                         </span>
                       </label>
                     </div>
@@ -446,7 +442,7 @@ const AccountPage: React.FC = () => {
 
                   <div>
                     <h4 className="font-medium text-verida-dark-teal mb-3">
-                      Privacidad
+                      Privacy
                     </h4>
                     <div className="space-y-2">
                       <label className="flex items-center">
@@ -456,13 +452,13 @@ const AccountPage: React.FC = () => {
                           className="mr-3 rounded"
                         />
                         <span className="text-verida-dark-teal/80">
-                          Perfil público
+                          Public profile
                         </span>
                       </label>
                       <label className="flex items-center">
                         <input type="checkbox" className="mr-3 rounded" />
                         <span className="text-verida-dark-teal/80">
-                          Mostrar estadísticas
+                          Show statistics
                         </span>
                       </label>
                     </div>
@@ -470,7 +466,7 @@ const AccountPage: React.FC = () => {
 
                   <div>
                     <h4 className="font-medium text-verida-dark-teal mb-3">
-                      Idioma
+                      Language
                     </h4>
                     <select className="verida-input max-w-xs">
                       <option value="es">Español</option>
@@ -485,7 +481,7 @@ const AccountPage: React.FC = () => {
                       className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center"
                     >
                       <IoLogOut className="mr-2" />
-                      Cerrar Sesión
+                      Sign Out
                     </button>
                   </div>
                 </div>

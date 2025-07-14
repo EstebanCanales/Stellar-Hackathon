@@ -44,12 +44,12 @@ const Communities: React.FC = () => {
     priority: "medium" as Need["priority"],
   });
 
-  // Datos de ejemplo
+  // Example data
   useEffect(() => {
     const mockCommunities: Community[] = [
       {
         id: "1",
-        name: "Comunidad San José",
+        name: "San José Community",
         location: "San José, Costa Rica",
         verified: true,
         totalDonations: 15,
@@ -59,7 +59,7 @@ const Communities: React.FC = () => {
       },
       {
         id: "2",
-        name: "Aldea Nueva Esperanza",
+        name: "Nueva Esperanza Village",
         location: "Guatemala, Guatemala",
         verified: true,
         totalDonations: 8,
@@ -69,7 +69,7 @@ const Communities: React.FC = () => {
       },
       {
         id: "3",
-        name: "Barrio El Progreso",
+        name: "El Progreso Neighborhood",
         location: "Managua, Nicaragua",
         verified: false,
         totalDonations: 3,
@@ -82,17 +82,17 @@ const Communities: React.FC = () => {
     const mockNeeds: Need[] = [
       {
         id: "1",
-        title: "Medicinas para niños",
+        title: "Children's medicine",
         description:
-          "Necesitamos medicamentos básicos para el tratamiento de enfermedades comunes en niños",
+          "We need basic medications for treating common diseases in children",
         priority: "urgent",
         status: "active",
         created_at: "2024-01-15",
       },
       {
         id: "2",
-        title: "Material escolar",
-        description: "Útiles escolares para el nuevo año lectivo",
+        title: "School supplies",
+        description: "School supplies for the new academic year",
         priority: "high",
         status: "active",
         created_at: "2024-01-14",
@@ -136,13 +136,13 @@ const Communities: React.FC = () => {
   const getPriorityText = (priority: string) => {
     switch (priority) {
       case "urgent":
-        return "Urgente";
+        return "Urgent";
       case "high":
-        return "Alta";
+        return "High";
       case "medium":
-        return "Media";
+        return "Medium";
       case "low":
-        return "Baja";
+        return "Low";
       default:
         return priority;
     }
@@ -173,7 +173,7 @@ const Communities: React.FC = () => {
           <div className="flex justify-center items-center min-h-[60vh]">
             <div className="text-center">
               <div className="verida-spinner mx-auto mb-4"></div>
-              <p className="text-white text-lg">Cargando comunidades...</p>
+              <p className="text-white text-lg">Loading communities...</p>
             </div>
           </div>
         </div>
@@ -194,10 +194,10 @@ const Communities: React.FC = () => {
           <div className="text-center mb-6">
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-2 verida-animate-fadeIn">
               <FaUsers className="inline-block mr-3 text-verida-light-green" />
-              Comunidades
+              Communities
             </h1>
             <p className="text-lg text-verida-light-green/80 verida-animate-fadeIn">
-              Gestiona y supervisa las comunidades beneficiarias
+              Manage and monitor beneficiary communities
             </p>
           </div>
         </div>
@@ -211,7 +211,7 @@ const Communities: React.FC = () => {
                 {stats.total}
               </div>
               <div className="text-sm text-verida-dark-teal/70">
-                Total Comunidades
+                Total Communities
               </div>
             </div>
             <div className="verida-card p-6 text-center">
@@ -219,9 +219,7 @@ const Communities: React.FC = () => {
               <div className="text-2xl font-bold text-verida-dark-teal">
                 {stats.verified}
               </div>
-              <div className="text-sm text-verida-dark-teal/70">
-                Verificadas
-              </div>
+              <div className="text-sm text-verida-dark-teal/70">Verified</div>
             </div>
             <div className="verida-card p-6 text-center">
               <FaHeart className="text-3xl text-verida-dark-teal mb-3 mx-auto" />
@@ -229,7 +227,7 @@ const Communities: React.FC = () => {
                 {stats.totalDonations}
               </div>
               <div className="text-sm text-verida-dark-teal/70">
-                Donaciones Recibidas
+                Donations Received
               </div>
             </div>
             <div className="verida-card p-6 text-center">
@@ -238,7 +236,7 @@ const Communities: React.FC = () => {
                 {stats.averageSuccess.toFixed(1)}%
               </div>
               <div className="text-sm text-verida-dark-teal/70">
-                Éxito Promedio
+                Average Success
               </div>
             </div>
           </div>
@@ -247,17 +245,17 @@ const Communities: React.FC = () => {
         {/* Communities Grid */}
         <div className="px-4 pb-8">
           <h2 className="text-2xl font-bold text-white text-center mb-6">
-            Lista de Comunidades
+            Community List
           </h2>
 
           {communities.length === 0 ? (
             <div className="text-center py-12">
               <FaUsers className="text-6xl text-verida-light-green/30 mx-auto mb-4" />
               <p className="text-white text-lg mb-2">
-                No hay comunidades registradas
+                No registered communities
               </p>
               <p className="text-verida-light-green/70">
-                Las comunidades aparecerán aquí cuando se registren
+                Communities will appear here when they register
               </p>
             </div>
           ) : (
@@ -280,7 +278,7 @@ const Communities: React.FC = () => {
                         <span className="text-sm">{community.location}</span>
                       </div>
                       <p className="text-verida-dark-teal/80 text-sm">
-                        <strong>Representante:</strong>{" "}
+                        <strong>Representative:</strong>{" "}
                         {community.representative}
                       </p>
                     </div>
@@ -291,7 +289,7 @@ const Communities: React.FC = () => {
                           : "verida-status-pending"
                       }`}
                     >
-                      {community.verified ? "Verificada" : "Pendiente"}
+                      {community.verified ? "Verified" : "Pending"}
                     </div>
                   </div>
 
@@ -301,7 +299,7 @@ const Communities: React.FC = () => {
                         {community.totalDonations}
                       </div>
                       <div className="text-xs text-verida-dark-teal/70">
-                        Donaciones
+                        Donations
                       </div>
                     </div>
                     <div className="text-center">
@@ -309,7 +307,7 @@ const Communities: React.FC = () => {
                         {community.totalDeliveries}
                       </div>
                       <div className="text-xs text-verida-dark-teal/70">
-                        Entregas
+                        Deliveries
                       </div>
                     </div>
                     <div className="text-center">
@@ -317,7 +315,7 @@ const Communities: React.FC = () => {
                         {community.successRate}%
                       </div>
                       <div className="text-xs text-verida-dark-teal/70">
-                        Éxito
+                        Success
                       </div>
                     </div>
                   </div>
@@ -331,7 +329,7 @@ const Communities: React.FC = () => {
                       className="verida-button-secondary px-4 py-2 text-sm flex items-center"
                     >
                       <IoEye className="w-4 h-4 mr-2" />
-                      Ver Detalles
+                      View Details
                     </button>
                   </div>
                 </div>
@@ -345,14 +343,14 @@ const Communities: React.FC = () => {
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 max-w-4xl mx-auto shadow-verida-lg">
                 <div className="flex justify-between items-center mb-6">
                   <h3 className="text-2xl font-bold text-white">
-                    Necesidades de {selectedCommunity.name}
+                    {selectedCommunity.name} Needs
                   </h3>
                   <button
                     onClick={() => setShowNeedForm(!showNeedForm)}
                     className="verida-button-primary flex items-center px-4 py-2"
                   >
                     <IoAdd className="mr-2" />
-                    {showNeedForm ? "Cancelar" : "Agregar Necesidad"}
+                    {showNeedForm ? "Cancel" : "Add Need"}
                   </button>
                 </div>
 
@@ -362,7 +360,7 @@ const Communities: React.FC = () => {
                     <div className="space-y-4">
                       <div>
                         <label className="block text-white font-medium mb-2">
-                          Título
+                          Title
                         </label>
                         <input
                           type="text"
@@ -370,13 +368,13 @@ const Communities: React.FC = () => {
                           onChange={(e) =>
                             setNewNeed({ ...newNeed, title: e.target.value })
                           }
-                          placeholder="Título de la necesidad"
+                          placeholder="Need title"
                           className="verida-input"
                         />
                       </div>
                       <div>
                         <label className="block text-white font-medium mb-2">
-                          Descripción
+                          Description
                         </label>
                         <textarea
                           value={newNeed.description}
@@ -386,13 +384,13 @@ const Communities: React.FC = () => {
                               description: e.target.value,
                             })
                           }
-                          placeholder="Describe la necesidad en detalle"
+                          placeholder="Describe the need in detail"
                           className="verida-input min-h-[80px] resize-none"
                         />
                       </div>
                       <div>
                         <label className="block text-white font-medium mb-2">
-                          Prioridad
+                          Priority
                         </label>
                         <select
                           value={newNeed.priority}
@@ -404,10 +402,10 @@ const Communities: React.FC = () => {
                           }
                           className="verida-input"
                         >
-                          <option value="low">Baja</option>
-                          <option value="medium">Media</option>
-                          <option value="high">Alta</option>
-                          <option value="urgent">Urgente</option>
+                          <option value="low">Low</option>
+                          <option value="medium">Medium</option>
+                          <option value="high">High</option>
+                          <option value="urgent">Urgent</option>
                         </select>
                       </div>
                       <div className="flex gap-4">
@@ -416,13 +414,13 @@ const Communities: React.FC = () => {
                           className="verida-button-primary flex items-center px-6 py-2"
                         >
                           <IoCheckmark className="mr-2" />
-                          Agregar
+                          Add
                         </button>
                         <button
                           onClick={() => setShowNeedForm(false)}
                           className="verida-button-outline px-6 py-2"
                         >
-                          Cancelar
+                          Cancel
                         </button>
                       </div>
                     </div>
@@ -434,11 +432,9 @@ const Communities: React.FC = () => {
                   {needs.length === 0 ? (
                     <div className="text-center py-8">
                       <FaBullhorn className="text-4xl text-verida-light-green/30 mx-auto mb-4" />
-                      <p className="text-white">
-                        No hay necesidades registradas
-                      </p>
+                      <p className="text-white">No registered needs</p>
                       <p className="text-verida-light-green/70 text-sm">
-                        Agrega las necesidades de la comunidad
+                        Add the community's needs
                       </p>
                     </div>
                   ) : (
@@ -461,7 +457,7 @@ const Communities: React.FC = () => {
                         </p>
                         <div className="flex justify-between items-center text-sm">
                           <span className="text-verida-light-green/60">
-                            Creado:{" "}
+                            Created:{" "}
                             {new Date(need.created_at).toLocaleDateString()}
                           </span>
                           <span
@@ -471,7 +467,7 @@ const Communities: React.FC = () => {
                                 : "bg-gray-500/20 text-gray-300"
                             }`}
                           >
-                            {need.status === "active" ? "Activa" : "Cumplida"}
+                            {need.status === "active" ? "Active" : "Fulfilled"}
                           </span>
                         </div>
                       </div>

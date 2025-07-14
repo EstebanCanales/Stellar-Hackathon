@@ -17,31 +17,31 @@ import { apiService } from "../../services/api";
 const optionsData = [
   {
     color: "#85b79d",
-    text: "ONG",
+    text: "NGO",
     icon: FaBuildingColumns,
     page: "/donations",
-    description: "Gestiona donaciones transparentes",
+    description: "Manage transparent donations",
   },
   {
     color: "#8b728e",
-    text: "Validar entrega",
+    text: "Validate delivery",
     icon: FaBoxOpen,
     page: "/deliverys",
-    description: "Verifica entregas comunitarias",
+    description: "Verify community deliveries",
   },
   {
     color: "#694873",
-    text: "Comunidad",
+    text: "Community",
     icon: FaPeopleGroup,
     page: "/communities",
-    description: "Perfil de comunidad",
+    description: "Community profile",
   },
   {
     color: "#c0e5c8",
-    text: "Usuario",
+    text: "User",
     icon: FaUser,
     page: "/account",
-    description: "Tu perfil y transacciones",
+    description: "Your profile and transactions",
   },
 ];
 
@@ -55,22 +55,18 @@ interface DashboardStats {
 const Home = () => {
   const [stats, setStats] = useState<DashboardStats>({
     totalDonations: 0,
-    successRate: 0,
+    successRate: 75,
     activeCommunities: 0,
     totalAmount: 0,
   });
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    loadDashboardData();
-  }, []);
+  const [error, setError] = useState<string | null>(null);
 
   const loadDashboardData = async () => {
     try {
       setLoading(true);
 
-      // Cargar datos reales del backend
+      // Load real backend data
       const [donationsResponse, communitiesResponse] = await Promise.all([
         apiService.getDonations(),
         apiService.getCommunities(),
@@ -79,7 +75,7 @@ const Home = () => {
       const donations = donationsResponse.donations || [];
       const communities = communitiesResponse.communities || [];
 
-      // Calcular estadísticas reales
+      // Calculate real statistics
       const completedDonations = donations.filter(
         (d) => d.status === "Completed"
       ).length;
@@ -90,25 +86,38 @@ const Home = () => {
           : 75;
 
       setStats({
-        totalDonations: donations.length || 120,
+        totalDonations: donations.length,
         successRate: Math.round(successRate),
-        activeCommunities: communities.length || 8,
-        totalAmount: totalAmount || 25000,
+        activeCommunities: communities.length,
+        totalAmount,
       });
-    } catch (err) {
-      console.error("Error loading dashboard data:", err);
-      setError("Error al cargar datos del dashboard");
-      // Usar datos por defecto si falla
-      setStats({
-        totalDonations: 120,
-        successRate: 75,
-        activeCommunities: 8,
-        totalAmount: 25000,
-      });
+    } catch (error) {
+      console.error("Error loading statistics:", error);
+      setError("Error loading statistics");
     } finally {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    loadDashboardData();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-primary">
+        <div className="verida-container pt-6">
+          <Header />
+          <div className="flex justify-center items-center min-h-[60vh]">
+            <div className="text-center">
+              <div className="verida-spinner mx-auto mb-4"></div>
+              <p className="text-white text-lg">Loading...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-primary">
@@ -120,32 +129,37 @@ const Home = () => {
 
         {/* Hero Section */}
         <div className="text-center mb-8 px-4">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 verida-animate-fadeIn">
-            Bienvenido a <span className="verida-text-gradient">Verida</span>
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
+            Welcome to{" "}
+            <span className="bg-gradient-to-r from-verida-green to-verida-light-green bg-clip-text text-transparent">
+              Verida
+            </span>
           </h1>
-          <p className="text-lg md:text-xl text-verida-light-green mb-6 max-w-2xl mx-auto verida-animate-fadeIn">
-            Plataforma de donaciones transparentes utilizando blockchain de
-            Stellar
+          <p className="text-xl text-verida-light-green/80 max-w-2xl mx-auto">
+            Transparent donation platform connecting NGOs with marginalized
+            communities using Stellar blockchain technology
           </p>
-
-          {error && (
-            <div className="mb-4 p-3 bg-error/20 border border-error/30 text-white rounded-lg max-w-md mx-auto">
-              {error}
-            </div>
-          )}
         </div>
 
-        {/* Dashboard Stats */}
-        <div className="mb-8 px-4">
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-verida-lg">
-            {loading ? (
-              <div className="flex justify-center items-center py-8">
-                <div className="verida-spinner"></div>
-              </div>
-            ) : (
-              <div className="verida-grid verida-grid-2 lg:verida-grid-4 gap-6">
-                {/* Total Donaciones */}
-                <div className="text-center verida-animate-slideIn">
+        {/* Stats Section */}
+        {error ? (
+          <div className="mb-8 px-4">
+            <div className="bg-error/20 border border-error/30 text-white p-4 rounded-lg max-w-2xl mx-auto">
+              <p>{error}</p>
+            </div>
+          </div>
+        ) : (
+          <div className="mb-8 px-4">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-verida-lg">
+              <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-6">
+                Real-Time Impact
+              </h2>
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                {/* Total Donations */}
+                <div
+                  className="text-center verida-animate-slideIn"
+                  style={{ animationDelay: "0s" }}
+                >
                   <div className="flex items-center justify-center mb-2">
                     <FaHandHoldingHeart className="text-verida-light-green text-2xl mr-2" />
                     <div className="text-3xl md:text-4xl font-bold text-white">
@@ -153,11 +167,11 @@ const Home = () => {
                     </div>
                   </div>
                   <div className="text-verida-light-green text-sm md:text-base font-medium">
-                    Donaciones Totales
+                    Total Donations
                   </div>
                 </div>
 
-                {/* Tasa de Éxito */}
+                {/* Success Rate */}
                 <div
                   className="text-center verida-animate-slideIn"
                   style={{ animationDelay: "0.1s" }}
@@ -169,11 +183,11 @@ const Home = () => {
                     </div>
                   </div>
                   <div className="text-verida-light-green text-sm md:text-base font-medium">
-                    Tasa de Éxito
+                    Success Rate
                   </div>
                 </div>
 
-                {/* Comunidades Activas */}
+                {/* Active Communities */}
                 <div
                   className="text-center verida-animate-slideIn"
                   style={{ animationDelay: "0.2s" }}
@@ -185,34 +199,34 @@ const Home = () => {
                     </div>
                   </div>
                   <div className="text-verida-light-green text-sm md:text-base font-medium">
-                    Comunidades Activas
+                    Active Communities
                   </div>
                 </div>
 
-                {/* Monto Total */}
+                {/* Total Amount */}
                 <div
                   className="text-center verida-animate-slideIn"
                   style={{ animationDelay: "0.3s" }}
                 >
                   <div className="flex items-center justify-center mb-2">
-                    <FaChartLine className="text-verida-dark-purple text-2xl mr-2" />
-                    <div className="text-2xl md:text-3xl font-bold text-white">
+                    <FaChartLine className="text-verida-dark-teal text-2xl mr-2" />
+                    <div className="text-3xl md:text-4xl font-bold text-white">
                       ${stats.totalAmount.toLocaleString()}
                     </div>
                   </div>
                   <div className="text-verida-light-green text-sm md:text-base font-medium">
-                    Monto Total (USD)
+                    Total Donated
                   </div>
                 </div>
               </div>
-            )}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Navigation Options */}
         <div className="px-4 pb-8">
           <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-6">
-            ¿Qué quieres hacer hoy?
+            What do you want to do today?
           </h2>
 
           <div className="verida-grid verida-grid-2 lg:verida-grid-4 gap-4 max-w-4xl mx-auto">
@@ -251,24 +265,24 @@ const Home = () => {
         <div className="px-4 pb-8">
           <div className="bg-gradient-secondary rounded-2xl p-6 md:p-8 text-center shadow-verida-lg">
             <h3 className="text-2xl md:text-3xl font-bold text-verida-dark-teal mb-4">
-              Únete a la revolución de transparencia
+              Join the transparency revolution
             </h3>
             <p className="text-verida-dark-teal/80 mb-6 max-w-2xl mx-auto">
-              Cada donación cuenta, cada transacción es transparente, cada
-              impacto es verificable.
+              Every donation matters, every transaction is transparent, every
+              impact is verifiable.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/donations"
                 className="verida-button-primary inline-block px-8 py-3 text-center"
               >
-                Crear Donación
+                Create Donation
               </Link>
               <Link
                 to="/communities"
                 className="verida-button-outline inline-block px-8 py-3 text-center"
               >
-                Explorar Comunidades
+                Explore Communities
               </Link>
             </div>
           </div>
@@ -277,8 +291,8 @@ const Home = () => {
         {/* Footer Info */}
         <div className="px-4 pb-6 text-center">
           <p className="text-verida-light-green/70 text-sm">
-            Powered by Stellar Blockchain | Desarrollado con ❤️ para crear un
-            mundo más transparente
+            Powered by Stellar Blockchain | Developed with ❤️ to create a more
+            transparent world
           </p>
         </div>
       </div>

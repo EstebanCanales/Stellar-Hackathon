@@ -18,14 +18,12 @@ const LandingPage: React.FC = () => {
       <nav className="p-6">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-r from-verida-green to-verida-light-green rounded-lg flex items-center justify-center transform hover:scale-110 transition-transform">
-              <span className="text-verida-dark-teal font-bold text-lg">V</span>
-            </div>
-            <div>
-              <h1 className="text-white text-xl font-bold">Verida</h1>
-              <p className="text-verida-light-green text-xs">
-                Donaciones Transparentes
-              </p>
+            <div className="w-20 md:w-30 h-20 md:h-30 flex items-center justify-center transform hover:scale-110 transition-transform">
+              <img
+                src="/Logo Vectorizado Verida.svg"
+                alt="Verida Logo"
+                className="w-full h-full object-contain"
+              />
             </div>
           </div>
 
@@ -34,7 +32,7 @@ const LandingPage: React.FC = () => {
               to="/login"
               className="px-6 py-2 text-white border border-verida-green rounded-lg hover:bg-verida-green hover:text-verida-dark-teal transition-all duration-300"
             >
-              Iniciar Sesión
+              Sign In
             </Link>
             <Link
               to="/login"
@@ -50,15 +48,15 @@ const LandingPage: React.FC = () => {
       <section className="py-20 px-6">
         <div className="max-w-6xl mx-auto text-center">
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
-            Donaciones{" "}
+            Transparent{" "}
             <span className="bg-gradient-to-r from-verida-green to-verida-light-green bg-clip-text text-transparent">
-              Transparentes
+              Donations
             </span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed">
-            Conectamos ONGs con comunidades marginadas usando tecnología
-            blockchain de Stellar para garantizar transparencia total en cada
-            donación
+            We connect NGOs with marginalized communities using Stellar
+            blockchain technology to guarantee total transparency in every
+            donation
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
@@ -67,10 +65,10 @@ const LandingPage: React.FC = () => {
               className="px-8 py-4 bg-gradient-to-r from-verida-green to-verida-light-green text-verida-dark-teal rounded-xl font-bold text-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center"
             >
               <FaArrowRight className="mr-2" />
-              Comenzar Ahora
+              Start Now
             </Link>
             <button className="px-8 py-4 border-2 border-verida-green text-white rounded-xl font-bold text-lg hover:bg-verida-green hover:text-verida-dark-teal transition-all duration-300">
-              Ver Demo
+              View Demo
             </button>
           </div>
 
@@ -80,25 +78,25 @@ const LandingPage: React.FC = () => {
               <div className="text-3xl font-bold text-verida-light-green">
                 50+
               </div>
-              <div className="text-gray-400">Comunidades</div>
+              <div className="text-gray-400">Communities</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-verida-light-green">
                 $125K
               </div>
-              <div className="text-gray-400">Donado</div>
+              <div className="text-gray-400">Donated</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-verida-light-green">
                 98%
               </div>
-              <div className="text-gray-400">Transparencia</div>
+              <div className="text-gray-400">Transparency</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-verida-light-green">
                 15+
               </div>
-              <div className="text-gray-400">ONGs</div>
+              <div className="text-gray-400">NGOs</div>
             </div>
           </div>
         </div>
@@ -108,7 +106,7 @@ const LandingPage: React.FC = () => {
       <section className="py-20 px-6 bg-black/20">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-white text-center mb-16">
-            ¿Por qué elegir{" "}
+            Why choose{" "}
             <span className="bg-gradient-to-r from-verida-green to-verida-light-green bg-clip-text text-transparent">
               Verida?
             </span>
@@ -120,11 +118,11 @@ const LandingPage: React.FC = () => {
                 <FaShieldAlt className="text-2xl text-verida-dark-teal" />
               </div>
               <h3 className="text-xl font-bold text-white mb-4">
-                100% Transparente
+                100% Transparent
               </h3>
               <p className="text-gray-300 leading-relaxed">
-                Cada donación es verificada en blockchain de Stellar. Los
-                donantes pueden rastrear exactamente cómo se usa su dinero.
+                Every donation is verified on Stellar blockchain. Donors can
+                track exactly how their money is used.
               </p>
             </div>
 
@@ -133,11 +131,11 @@ const LandingPage: React.FC = () => {
                 <FaUsers className="text-2xl text-white" />
               </div>
               <h3 className="text-xl font-bold text-white mb-4">
-                Validación Comunitaria
+                Community Validation
               </h3>
               <p className="text-gray-300 leading-relaxed">
-                Las comunidades validan las entregas directamente, asegurando
-                que las donaciones lleguen a quien las necesita.
+                Communities validate deliveries directly, ensuring donations
+                reach those who need them.
               </p>
             </div>
 
@@ -145,12 +143,10 @@ const LandingPage: React.FC = () => {
               <div className="w-16 h-16 bg-gradient-to-r from-verida-green to-verida-light-green rounded-xl flex items-center justify-center mb-6">
                 <FaHandHoldingHeart className="text-2xl text-verida-dark-teal" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-4">
-                Impacto Real
-              </h3>
+              <h3 className="text-xl font-bold text-white mb-4">Real Impact</h3>
               <p className="text-gray-300 leading-relaxed">
-                Conectamos directamente a donantes con comunidades marginadas,
-                maximizando el impacto de cada donación.
+                We directly connect donors with marginalized communities,
+                maximizing the impact of every donation.
               </p>
             </div>
           </div>
@@ -161,9 +157,9 @@ const LandingPage: React.FC = () => {
       <section className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-white text-center mb-16">
-            Cómo{" "}
+            How it{" "}
             <span className="bg-gradient-to-r from-verida-green to-verida-light-green bg-clip-text text-transparent">
-              Funciona
+              Works
             </span>
           </h2>
 
@@ -175,11 +171,10 @@ const LandingPage: React.FC = () => {
                 </span>
               </div>
               <h3 className="text-lg font-semibold text-white mb-3">
-                ONG Crea Donación
+                NGO Creates Donation
               </h3>
               <p className="text-gray-400">
-                Las ONGs publican necesidades específicas de comunidades
-                verificadas
+                NGOs publish specific needs from verified communities
               </p>
             </div>
 
@@ -188,10 +183,10 @@ const LandingPage: React.FC = () => {
                 <span className="text-2xl font-bold text-white">2</span>
               </div>
               <h3 className="text-lg font-semibold text-white mb-3">
-                Donación Segura
+                Secure Donation
               </h3>
               <p className="text-gray-400">
-                Los fondos se depositan en un contrato inteligente en Stellar
+                Funds are deposited in a smart contract on Stellar
               </p>
             </div>
 
@@ -202,10 +197,10 @@ const LandingPage: React.FC = () => {
                 </span>
               </div>
               <h3 className="text-lg font-semibold text-white mb-3">
-                Entrega Verificada
+                Verified Delivery
               </h3>
               <p className="text-gray-400">
-                La comunidad confirma la recepción de bienes o servicios
+                Community confirms receipt of goods or services
               </p>
             </div>
 
@@ -214,10 +209,10 @@ const LandingPage: React.FC = () => {
                 <span className="text-2xl font-bold text-white">4</span>
               </div>
               <h3 className="text-lg font-semibold text-white mb-3">
-                Liberación Automática
+                Automatic Release
               </h3>
               <p className="text-gray-400">
-                Los fondos se liberan automáticamente tras la validación
+                Funds are automatically released after validation
               </p>
             </div>
           </div>
@@ -228,18 +223,18 @@ const LandingPage: React.FC = () => {
       <section className="py-20 px-6 bg-gradient-to-r from-verida-green/20 to-verida-light-green/20">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold text-white mb-6">
-            ¿Listo para hacer donaciones transparentes?
+            Ready to make transparent donations?
           </h2>
           <p className="text-xl text-gray-300 mb-12">
-            Únete a la revolución de la transparencia en donaciones. Conecta con
-            comunidades que realmente necesitan tu ayuda.
+            Join the transparency revolution in donations. Connect with
+            communities that truly need your help.
           </p>
           <Link
             to="/login"
             className="inline-flex items-center px-10 py-4 bg-gradient-to-r from-verida-green to-verida-light-green text-verida-dark-teal rounded-xl font-bold text-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
           >
             <FaArrowRight className="mr-3" />
-            Comenzar Ahora
+            Start Now
           </Link>
         </div>
       </section>
@@ -260,27 +255,26 @@ const LandingPage: React.FC = () => {
                 href="#"
                 className="hover:text-verida-light-green transition-colors"
               >
-                Privacidad
+                Privacy
               </a>
               <a
                 href="#"
                 className="hover:text-verida-light-green transition-colors"
               >
-                Términos
+                Terms
               </a>
               <a
                 href="#"
                 className="hover:text-verida-light-green transition-colors"
               >
-                Contacto
+                Contact
               </a>
             </div>
           </div>
 
           <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
             <p>
-              &copy; 2024 Verida. Construido con ❤️ para comunidades
-              transparentes.
+              &copy; 2024 Verida. Built with ❤️ for transparent communities.
             </p>
           </div>
         </div>

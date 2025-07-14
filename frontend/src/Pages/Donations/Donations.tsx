@@ -60,7 +60,7 @@ const Donations: React.FC = () => {
     } catch (err) {
       console.error("Error loading data:", err);
       setError(
-        "Error al cargar los datos. Verifica que el backend esté funcionando."
+        "Error loading data. Please verify that the backend is running."
       );
     } finally {
       setLoading(false);
@@ -78,13 +78,13 @@ const Donations: React.FC = () => {
 
   const validateForm = (): boolean => {
     if (!formData.communityId || !formData.amount || !formData.description) {
-      setError("Por favor completa todos los campos obligatorios");
+      setError("Please fill in all required fields");
       return false;
     }
 
     const amount = parseFloat(formData.amount);
     if (isNaN(amount) || amount <= 0) {
-      setError("El monto debe ser un número válido mayor a 0");
+      setError("Amount must be a valid number greater than 0");
       return false;
     }
 
@@ -104,14 +104,13 @@ const Donations: React.FC = () => {
         community_id: formData.communityId,
         amount: parseFloat(formData.amount),
         description: formData.description,
-        conditions:
-          formData.conditions || "Entrega verificada por la comunidad",
+        conditions: formData.conditions || "Delivery verified by community",
         donor_stellar_key: formData.stellarKey || "DEMO_STELLAR_KEY_123456789",
       };
 
       await apiService.createDonation(donationData);
 
-      setSuccess("¡Donación creada exitosamente!");
+      setSuccess("Donation created successfully!");
       setFormData({
         communityId: "",
         amount: "",
@@ -121,11 +120,11 @@ const Donations: React.FC = () => {
       });
       setShowForm(false);
 
-      // Recargar donaciones
+      // Reload donations
       loadData();
     } catch (err) {
       console.error("Error creating donation:", err);
-      setError("Error al crear la donación. Intenta nuevamente.");
+      setError("Error creating donation. Please try again.");
     } finally {
       setSubmitting(false);
     }
@@ -155,19 +154,19 @@ const Donations: React.FC = () => {
   const getStatusText = (status: string) => {
     switch (status) {
       case "Created":
-        return "Creada";
+        return "Created";
       case "InEscrow":
-        return "En Escrow";
+        return "In Escrow";
       case "Validated":
-        return "Validada";
+        return "Validated";
       case "Delivered":
-        return "Entregada";
+        return "Delivered";
       case "Completed":
-        return "Completada";
+        return "Completed";
       case "Disputed":
-        return "Disputada";
+        return "Disputed";
       case "Cancelled":
-        return "Cancelada";
+        return "Cancelled";
       default:
         return status;
     }
@@ -181,7 +180,7 @@ const Donations: React.FC = () => {
           <div className="flex justify-center items-center min-h-[60vh]">
             <div className="text-center">
               <div className="verida-spinner mx-auto mb-4"></div>
-              <p className="text-white text-lg">Cargando donaciones...</p>
+              <p className="text-white text-lg">Loading donations...</p>
             </div>
           </div>
         </div>
@@ -202,10 +201,10 @@ const Donations: React.FC = () => {
           <div className="text-center mb-6">
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-2 verida-animate-fadeIn">
               <FaHeart className="inline-block mr-3 text-verida-light-green" />
-              Sistema de Donaciones
+              Donation System
             </h1>
             <p className="text-lg text-verida-light-green/80 verida-animate-fadeIn">
-              Gestiona donaciones transparentes utilizando blockchain de Stellar
+              Manage transparent donations using Stellar blockchain
             </p>
           </div>
         </div>
@@ -242,7 +241,7 @@ const Donations: React.FC = () => {
                 {donations.length}
               </div>
               <div className="text-sm text-verida-dark-teal/70">
-                Donaciones Totales
+                Total Donations
               </div>
             </div>
             <div className="verida-card p-6 text-center">
@@ -251,7 +250,7 @@ const Donations: React.FC = () => {
                 {communities.length}
               </div>
               <div className="text-sm text-verida-dark-teal/70">
-                Comunidades Activas
+                Active Communities
               </div>
             </div>
             <div className="verida-card p-6 text-center">
@@ -259,9 +258,7 @@ const Donations: React.FC = () => {
               <div className="text-2xl font-bold text-verida-dark-teal">
                 {donations.filter((d) => d.status === "Completed").length}
               </div>
-              <div className="text-sm text-verida-dark-teal/70">
-                Completadas
-              </div>
+              <div className="text-sm text-verida-dark-teal/70">Completed</div>
             </div>
           </div>
         </div>
@@ -274,14 +271,14 @@ const Donations: React.FC = () => {
               className="verida-button-primary flex items-center justify-center px-6 py-3"
             >
               <FaPlus className="mr-2" />
-              {showForm ? "Cancelar" : "Nueva Donación"}
+              {showForm ? "Cancel" : "New Donation"}
             </button>
             <button
               onClick={loadData}
               className="verida-button-outline flex items-center justify-center px-6 py-3"
             >
               <FaEye className="mr-2" />
-              Actualizar
+              Refresh
             </button>
           </div>
         </div>
@@ -291,13 +288,13 @@ const Donations: React.FC = () => {
           <div className="mb-8 px-4 verida-animate-fadeIn">
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 max-w-2xl mx-auto shadow-verida-lg">
               <h2 className="text-2xl font-bold text-white mb-6 text-center">
-                Crear Nueva Donación
+                Create New Donation
               </h2>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label className="block text-white font-medium mb-2">
-                    Comunidad Beneficiaria *
+                    Beneficiary Community *
                   </label>
                   <select
                     name="communityId"
@@ -306,7 +303,7 @@ const Donations: React.FC = () => {
                     className="verida-input"
                     required
                   >
-                    <option value="">Selecciona una comunidad</option>
+                    <option value="">Select a community</option>
                     {communities.map((community) => (
                       <option key={community.id} value={community.id}>
                         {community.name} - {community.location}
@@ -317,14 +314,14 @@ const Donations: React.FC = () => {
 
                 <div>
                   <label className="block text-white font-medium mb-2">
-                    Monto (USD) *
+                    Amount (USD) *
                   </label>
                   <input
                     type="number"
                     name="amount"
                     value={formData.amount}
                     onChange={handleInputChange}
-                    placeholder="Ejemplo: 500"
+                    placeholder="Example: 500"
                     className="verida-input"
                     min="1"
                     step="0.01"
@@ -334,13 +331,13 @@ const Donations: React.FC = () => {
 
                 <div>
                   <label className="block text-white font-medium mb-2">
-                    Descripción *
+                    Description *
                   </label>
                   <textarea
                     name="description"
                     value={formData.description}
                     onChange={handleInputChange}
-                    placeholder="Describe el propósito de esta donación..."
+                    placeholder="Describe the purpose of this donation..."
                     className="verida-input min-h-[100px] resize-none"
                     required
                   />
@@ -348,27 +345,27 @@ const Donations: React.FC = () => {
 
                 <div>
                   <label className="block text-white font-medium mb-2">
-                    Condiciones de entrega
+                    Delivery Conditions
                   </label>
                   <textarea
                     name="conditions"
                     value={formData.conditions}
                     onChange={handleInputChange}
-                    placeholder="Condiciones específicas para la entrega (opcional)"
+                    placeholder="Specific conditions for delivery (optional)"
                     className="verida-input min-h-[80px] resize-none"
                   />
                 </div>
 
                 <div>
                   <label className="block text-white font-medium mb-2">
-                    Clave Stellar (opcional)
+                    Stellar Key (optional)
                   </label>
                   <input
                     type="text"
                     name="stellarKey"
                     value={formData.stellarKey}
                     onChange={handleInputChange}
-                    placeholder="Tu clave pública de Stellar"
+                    placeholder="Your Stellar public key"
                     className="verida-input"
                   />
                 </div>
@@ -382,12 +379,12 @@ const Donations: React.FC = () => {
                     {submitting ? (
                       <>
                         <div className="verida-spinner w-5 h-5 mr-2"></div>
-                        Creando...
+                        Creating...
                       </>
                     ) : (
                       <>
                         <FaCheck className="mr-2" />
-                        Crear Donación
+                        Create Donation
                       </>
                     )}
                   </button>
@@ -396,7 +393,7 @@ const Donations: React.FC = () => {
                     onClick={() => setShowForm(false)}
                     className="verida-button-outline px-8 py-3"
                   >
-                    Cancelar
+                    Cancel
                   </button>
                 </div>
               </form>
@@ -407,17 +404,15 @@ const Donations: React.FC = () => {
         {/* Donations List */}
         <div className="px-4 pb-8">
           <h2 className="text-2xl font-bold text-white text-center mb-6">
-            Donaciones Recientes
+            Recent Donations
           </h2>
 
           {donations.length === 0 ? (
             <div className="text-center py-12">
               <FaHeart className="text-6xl text-verida-light-green/30 mx-auto mb-4" />
-              <p className="text-white text-lg mb-2">
-                No hay donaciones todavía
-              </p>
+              <p className="text-white text-lg mb-2">No donations yet</p>
               <p className="text-verida-light-green/70">
-                ¡Sé el primero en crear una donación!
+                Be the first to create a donation!
               </p>
             </div>
           ) : (
@@ -439,7 +434,7 @@ const Donations: React.FC = () => {
                         <div className="flex items-center text-verida-dark-teal/70 mb-2">
                           <FaLocationDot className="mr-2" />
                           <span className="text-sm">
-                            {community?.name || "Comunidad desconocida"}
+                            {community?.name || "Unknown community"}
                           </span>
                         </div>
                         <div className="flex items-center text-verida-dark-teal/70">
@@ -465,7 +460,7 @@ const Donations: React.FC = () => {
                     {donation.conditions && (
                       <div className="bg-verida-light-green/20 rounded-lg p-3 mb-4">
                         <p className="text-sm text-verida-dark-teal">
-                          <strong>Condiciones:</strong> {donation.conditions}
+                          <strong>Conditions:</strong> {donation.conditions}
                         </p>
                       </div>
                     )}
@@ -475,7 +470,7 @@ const Donations: React.FC = () => {
                         ID: {donation.id.slice(0, 8)}...
                       </span>
                       <button className="verida-button-secondary px-4 py-2 text-sm">
-                        Ver Detalles
+                        View Details
                       </button>
                     </div>
                   </div>

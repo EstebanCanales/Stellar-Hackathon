@@ -38,38 +38,38 @@ const Deliverys: React.FC = () => {
   const [validationNotes, setValidationNotes] = useState("");
   const [loading, setLoading] = useState(true);
 
-  // Datos de ejemplo
+  // Example data
   useEffect(() => {
     const mockDeliveries: Delivery[] = [
       {
         id: "1",
-        community_name: "Comunidad San José",
-        goods_received: "Alimentos básicos y medicinas",
-        quantity: "50 paquetes",
+        community_name: "San José Community",
+        goods_received: "Basic food and medicine",
+        quantity: "50 packages",
         representative_id: "REP-001",
         status: "pending",
         created_at: "2024-01-15",
-        notes: "Entrega programada para mañana",
+        notes: "Delivery scheduled for tomorrow",
       },
       {
         id: "2",
-        community_name: "Aldea Nueva Esperanza",
-        goods_received: "Materiales de construcción",
-        quantity: "20 sacos de cemento",
+        community_name: "Nueva Esperanza Village",
+        goods_received: "Construction materials",
+        quantity: "20 cement bags",
         representative_id: "REP-002",
         status: "validated",
         created_at: "2024-01-14",
-        notes: "Entrega completada exitosamente",
+        notes: "Delivery completed successfully",
       },
       {
         id: "3",
-        community_name: "Barrio El Progreso",
-        goods_received: "Útiles escolares",
+        community_name: "El Progreso Neighborhood",
+        goods_received: "School supplies",
         quantity: "100 kits",
         representative_id: "REP-003",
         status: "rejected",
         created_at: "2024-01-13",
-        notes: "No se completó la entrega según condiciones",
+        notes: "Delivery not completed according to conditions",
       },
     ];
 
@@ -104,11 +104,11 @@ const Deliverys: React.FC = () => {
   const getStatusText = (status: string) => {
     switch (status) {
       case "validated":
-        return "Validada";
+        return "Validated";
       case "rejected":
-        return "Rechazada";
+        return "Rejected";
       default:
-        return "Pendiente";
+        return "Pending";
     }
   };
 
@@ -150,7 +150,7 @@ const Deliverys: React.FC = () => {
           <div className="flex justify-center items-center min-h-[60vh]">
             <div className="text-center">
               <div className="verida-spinner mx-auto mb-4"></div>
-              <p className="text-white text-lg">Cargando entregas...</p>
+              <p className="text-white text-lg">Loading deliveries...</p>
             </div>
           </div>
         </div>
@@ -171,10 +171,10 @@ const Deliverys: React.FC = () => {
           <div className="text-center mb-6">
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-2 verida-animate-fadeIn">
               <FaClipboardCheck className="inline-block mr-3 text-verida-light-green" />
-              Validar Entregas
+              Validate Deliveries
             </h1>
             <p className="text-lg text-verida-light-green/80 verida-animate-fadeIn">
-              Valida las entregas realizadas a las comunidades
+              Validate deliveries made to communities
             </p>
           </div>
         </div>
@@ -194,21 +194,21 @@ const Deliverys: React.FC = () => {
               <div className="text-2xl font-bold text-verida-dark-teal">
                 {stats.pending}
               </div>
-              <div className="text-sm text-verida-dark-teal/70">Pendientes</div>
+              <div className="text-sm text-verida-dark-teal/70">Pending</div>
             </div>
             <div className="verida-card p-6 text-center">
               <IoCheckmarkCircle className="text-3xl text-green-600 mb-3 mx-auto" />
               <div className="text-2xl font-bold text-verida-dark-teal">
                 {stats.validated}
               </div>
-              <div className="text-sm text-verida-dark-teal/70">Validadas</div>
+              <div className="text-sm text-verida-dark-teal/70">Validated</div>
             </div>
             <div className="verida-card p-6 text-center">
               <IoCloseCircle className="text-3xl text-red-600 mb-3 mx-auto" />
               <div className="text-2xl font-bold text-verida-dark-teal">
                 {stats.rejected}
               </div>
-              <div className="text-sm text-verida-dark-teal/70">Rechazadas</div>
+              <div className="text-sm text-verida-dark-teal/70">Rejected</div>
             </div>
           </div>
         </div>
@@ -217,10 +217,10 @@ const Deliverys: React.FC = () => {
         <div className="mb-8 px-4">
           <div className="flex flex-wrap gap-4 justify-center max-w-lg mx-auto">
             {[
-              { value: "all", label: "Todas" },
-              { value: "pending", label: "Pendientes" },
-              { value: "validated", label: "Validadas" },
-              { value: "rejected", label: "Rechazadas" },
+              { value: "all", label: "All" },
+              { value: "pending", label: "Pending" },
+              { value: "validated", label: "Validated" },
+              { value: "rejected", label: "Rejected" },
             ].map((filterOption) => (
               <button
                 key={filterOption.value}
@@ -240,26 +240,26 @@ const Deliverys: React.FC = () => {
         {/* Deliveries List */}
         <div className="px-4 pb-8">
           <h2 className="text-2xl font-bold text-white text-center mb-6">
-            Entregas para Validar
+            Deliveries to Validate
           </h2>
 
           {filteredDeliveries.length === 0 ? (
             <div className="text-center py-12">
               <FaBoxOpen className="text-6xl text-verida-light-green/30 mx-auto mb-4" />
               <p className="text-white text-lg mb-2">
-                No hay entregas{" "}
+                No deliveries{" "}
                 {filter !== "all"
                   ? `${
                       filter === "pending"
-                        ? "pendientes"
+                        ? "pending"
                         : filter === "validated"
-                        ? "validadas"
-                        : "rechazadas"
+                        ? "validated"
+                        : "rejected"
                     }`
                   : ""}
               </p>
               <p className="text-verida-light-green/70">
-                Las entregas aparecerán aquí cuando estén disponibles
+                Deliveries will appear here when available
               </p>
             </div>
           ) : (
@@ -275,13 +275,13 @@ const Deliverys: React.FC = () => {
                         {delivery.community_name}
                       </h3>
                       <p className="text-verida-dark-teal/80 mb-2">
-                        <strong>Bienes:</strong> {delivery.goods_received}
+                        <strong>Goods:</strong> {delivery.goods_received}
                       </p>
                       <p className="text-verida-dark-teal/80 mb-2">
-                        <strong>Cantidad:</strong> {delivery.quantity}
+                        <strong>Quantity:</strong> {delivery.quantity}
                       </p>
                       <p className="text-verida-dark-teal/80">
-                        <strong>Representante:</strong>{" "}
+                        <strong>Representative:</strong>{" "}
                         {delivery.representative_id}
                       </p>
                     </div>
@@ -300,7 +300,7 @@ const Deliverys: React.FC = () => {
                   {delivery.notes && (
                     <div className="bg-verida-light-green/20 rounded-lg p-3 mb-4">
                       <p className="text-sm text-verida-dark-teal">
-                        <strong>Notas:</strong> {delivery.notes}
+                        <strong>Notes:</strong> {delivery.notes}
                       </p>
                     </div>
                   )}
@@ -318,7 +318,7 @@ const Deliverys: React.FC = () => {
                         className="verida-button-primary px-4 py-2 text-sm flex items-center"
                       >
                         <IoEye className="w-4 h-4 mr-2" />
-                        Validar
+                        Validate
                       </button>
                     )}
                   </div>
@@ -333,29 +333,29 @@ const Deliverys: React.FC = () => {
           <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 max-w-2xl w-full shadow-verida-lg">
               <h2 className="text-2xl font-bold text-white mb-6 text-center">
-                Validar Entrega
+                Validate Delivery
               </h2>
 
               <div className="mb-6 space-y-4">
                 <div>
                   <p className="text-white">
-                    <strong>Comunidad:</strong>{" "}
+                    <strong>Community:</strong>{" "}
                     {selectedDelivery.community_name}
                   </p>
                 </div>
                 <div>
                   <p className="text-white">
-                    <strong>Bienes:</strong> {selectedDelivery.goods_received}
+                    <strong>Goods:</strong> {selectedDelivery.goods_received}
                   </p>
                 </div>
                 <div>
                   <p className="text-white">
-                    <strong>Cantidad:</strong> {selectedDelivery.quantity}
+                    <strong>Quantity:</strong> {selectedDelivery.quantity}
                   </p>
                 </div>
                 <div>
                   <p className="text-white">
-                    <strong>Representante:</strong>{" "}
+                    <strong>Representative:</strong>{" "}
                     {selectedDelivery.representative_id}
                   </p>
                 </div>
@@ -363,12 +363,12 @@ const Deliverys: React.FC = () => {
 
               <div className="mb-6">
                 <label className="block text-white font-medium mb-2">
-                  Notas de validación
+                  Validation notes
                 </label>
                 <textarea
                   value={validationNotes}
                   onChange={(e) => setValidationNotes(e.target.value)}
-                  placeholder="Agrega comentarios sobre la validación..."
+                  placeholder="Add comments about the validation..."
                   className="verida-input min-h-[100px] resize-none"
                 />
               </div>
@@ -379,20 +379,20 @@ const Deliverys: React.FC = () => {
                   className="verida-button-primary flex items-center justify-center px-6 py-3"
                 >
                   <IoCheckmark className="mr-2" />
-                  Validar Entrega
+                  Validate Delivery
                 </button>
                 <button
                   onClick={() => handleValidateDelivery("reject")}
                   className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center"
                 >
                   <IoClose className="mr-2" />
-                  Rechazar
+                  Reject
                 </button>
                 <button
                   onClick={() => setShowModal(false)}
                   className="verida-button-outline px-6 py-3"
                 >
-                  Cancelar
+                  Cancel
                 </button>
               </div>
             </div>

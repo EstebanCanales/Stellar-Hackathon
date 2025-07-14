@@ -34,7 +34,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Verificar si hay una sesión guardada
+    // Check if there is a saved session
     const savedUser = localStorage.getItem("verida_user");
     if (savedUser) {
       setUser(JSON.parse(savedUser));
@@ -46,7 +46,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       setLoading(true);
 
-      // Simulación de login - en producción esto sería una llamada al backend
+      // Login simulation - in production this would be a backend call
       if (email && password.length >= 6) {
         const mockUser: User = {
           id: "1",
@@ -62,7 +62,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       }
       return false;
     } catch (error) {
-      console.error("Error en login:", error);
+      console.error("Login error:", error);
       return false;
     } finally {
       setLoading(false);

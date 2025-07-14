@@ -7,22 +7,14 @@ const Header = () => {
     <div className="flex items-center justify-between w-full">
       <Link to="/" className="flex items-center group">
         {/* Logo Container */}
-        <div className="flex items-center space-x-3">
-          {/* Logo placeholder - you can replace with actual SVG */}
-          <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-secondary rounded-full flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-verida-md">
-            <span className="text-verida-dark-teal font-bold text-lg md:text-xl">
-              V
-            </span>
-          </div>
-
-          {/* Brand Text */}
-          <div className="hidden sm:block">
-            <h1 className="text-2xl md:text-3xl font-bold text-white group-hover:text-verida-light-green transition-colors duration-300">
-              Verida
-            </h1>
-            <p className="text-xs md:text-sm text-verida-light-green/70 -mt-1">
-              Donaciones Transparentes
-            </p>
+        <div className="flex items-center">
+          {/* Verida Logo */}
+          <div className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center group-hover:scale-110 transition-all duration-300">
+            <img
+              src="/Logo Vectorizado Verida.svg"
+              alt="Verida Logo"
+              className="w-full h-full object-contain"
+            />
           </div>
         </div>
       </Link>
@@ -33,22 +25,22 @@ const Header = () => {
           to="/donations"
           className="text-verida-light-green hover:text-white transition-colors duration-300 font-medium"
         >
-          Donaciones
+          Donations
         </Link>
         <Link
           to="/communities"
           className="text-verida-light-green hover:text-white transition-colors duration-300 font-medium"
         >
-          Comunidades
+          Communities
         </Link>
         <Link
           to="/deliverys"
           className="text-verida-light-green hover:text-white transition-colors duration-300 font-medium"
         >
-          Entregas
+          Deliveries
         </Link>
         <Link to="/account" className="verida-button-primary px-4 py-2 text-sm">
-          Mi Cuenta
+          My Account
         </Link>
       </nav>
 

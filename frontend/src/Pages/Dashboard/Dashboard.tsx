@@ -17,31 +17,31 @@ import { apiService } from "../../services/api";
 const optionsData = [
   {
     color: "#85b79d",
-    text: "ONG",
+    text: "NGO",
     icon: FaBuildingColumns,
     page: "/donations",
-    description: "Gestiona donaciones transparentes",
+    description: "Manage transparent donations",
   },
   {
     color: "#8b728e",
-    text: "Validar entrega",
+    text: "Validate delivery",
     icon: FaBoxOpen,
     page: "/deliverys",
-    description: "Verifica entregas comunitarias",
+    description: "Verify community deliveries",
   },
   {
     color: "#694873",
-    text: "Comunidad",
+    text: "Community",
     icon: FaPeopleGroup,
     page: "/communities",
-    description: "Perfil de comunidad",
+    description: "Community profile",
   },
   {
     color: "#c0e5c8",
-    text: "Usuario",
+    text: "User",
     icon: FaUser,
     page: "/account",
-    description: "Tu perfil y transacciones",
+    description: "Your profile and transactions",
   },
 ];
 
@@ -73,8 +73,8 @@ const Dashboard = () => {
       const statsResponse = await apiService.getStatistics();
       setStats(statsResponse);
     } catch (error) {
-      console.error("Error cargando estadísticas:", error);
-      setError("Error al cargar las estadísticas");
+      console.error("Error loading statistics:", error);
+      setError("Error loading statistics");
     } finally {
       setLoading(false);
     }
@@ -90,15 +90,19 @@ const Dashboard = () => {
       <header className="p-6">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center space-x-4">
-            <div className="w-12 h-12 bg-gradient-to-r from-verida-green to-verida-light-green rounded-xl flex items-center justify-center transform hover:scale-110 transition-transform">
-              <span className="text-verida-dark-teal font-bold text-xl">V</span>
+            <div className="w-12 h-12 flex items-center justify-center transform hover:scale-110 transition-transform">
+              <img
+                src="/Logo Vectorizado Verida.svg"
+                alt="Verida Logo"
+                className="w-full h-full object-contain"
+              />
             </div>
             <div>
               <h1 className="text-white text-2xl font-bold">
-                Dashboard Verida
+                Verida Dashboard
               </h1>
               <p className="text-verida-light-green text-sm">
-                Bienvenido, {user?.name || user?.email}
+                Welcome, {user?.name || user?.email}
               </p>
             </div>
           </div>
@@ -106,7 +110,7 @@ const Dashboard = () => {
           <div className="flex items-center space-x-4">
             <div className="hidden md:flex flex-col text-right">
               <span className="text-white font-medium">
-                {user?.name || "Usuario"}
+                {user?.name || "User"}
               </span>
               <span className="text-verida-light-green text-sm">
                 {user?.email}
@@ -117,7 +121,7 @@ const Dashboard = () => {
               className="flex items-center space-x-2 px-4 py-2 bg-red-500/20 hover:bg-red-500/30 text-red-200 rounded-lg transition-colors"
             >
               <FaSignOutAlt />
-              <span className="hidden md:inline">Cerrar Sesión</span>
+              <span className="hidden md:inline">Sign Out</span>
             </button>
           </div>
         </div>
@@ -129,11 +133,11 @@ const Dashboard = () => {
           {/* Statistics Section */}
           <section className="mb-12">
             <h2 className="text-3xl font-bold text-white mb-8">
-              Estadísticas en Tiempo Real
+              Real-Time Statistics
             </h2>
 
             {loading ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {[...Array(4)].map((_, i) => (
                   <div key={i} className="verida-card animate-pulse">
                     <div className="h-8 bg-white/10 rounded mb-4"></div>
@@ -148,11 +152,11 @@ const Dashboard = () => {
                   onClick={loadDashboardData}
                   className="mt-4 px-4 py-2 bg-red-500/30 hover:bg-red-500/40 text-white rounded-lg transition-colors"
                 >
-                  Reintentar
+                  Retry
                 </button>
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div className="verida-card group hover:scale-105 transition-transform">
                   <div className="flex items-center justify-between mb-4">
                     <FaHandHoldingHeart className="text-3xl text-verida-light-green" />
@@ -161,14 +165,12 @@ const Dashboard = () => {
                     </div>
                   </div>
                   <h3 className="text-white font-semibold text-lg mb-2">
-                    Total Donaciones
+                    Total Donations
                   </h3>
                   <p className="text-3xl font-bold text-verida-light-green">
                     {stats.totalDonations}
                   </p>
-                  <p className="text-gray-400 text-sm mt-2">
-                    Donaciones activas
-                  </p>
+                  <p className="text-gray-400 text-sm mt-2">Active donations</p>
                 </div>
 
                 <div className="verida-card group hover:scale-105 transition-transform">
@@ -179,13 +181,13 @@ const Dashboard = () => {
                     </div>
                   </div>
                   <h3 className="text-white font-semibold text-lg mb-2">
-                    Tasa de Éxito
+                    Success Rate
                   </h3>
                   <p className="text-3xl font-bold text-verida-purple">
                     {stats.successRate}%
                   </p>
                   <p className="text-gray-400 text-sm mt-2">
-                    Entregas completadas
+                    Completed deliveries
                   </p>
                 </div>
 
@@ -197,13 +199,13 @@ const Dashboard = () => {
                     </div>
                   </div>
                   <h3 className="text-white font-semibold text-lg mb-2">
-                    Comunidades
+                    Communities
                   </h3>
                   <p className="text-3xl font-bold text-verida-green">
                     {stats.totalCommunities}
                   </p>
                   <p className="text-gray-400 text-sm mt-2">
-                    Comunidades activas
+                    Active communities
                   </p>
                 </div>
 
@@ -215,14 +217,12 @@ const Dashboard = () => {
                     </div>
                   </div>
                   <h3 className="text-white font-semibold text-lg mb-2">
-                    Total Donado
+                    Total Donated
                   </h3>
                   <p className="text-3xl font-bold text-verida-light-green">
                     ${stats.totalAmount.toLocaleString()}
                   </p>
-                  <p className="text-gray-400 text-sm mt-2">
-                    USD en donaciones
-                  </p>
+                  <p className="text-gray-400 text-sm mt-2">USD in donations</p>
                 </div>
               </div>
             )}
@@ -231,9 +231,9 @@ const Dashboard = () => {
           {/* Navigation Options */}
           <section>
             <h2 className="text-3xl font-bold text-white mb-8">
-              ¿Qué deseas hacer?
+              What would you like to do?
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {optionsData.map((option, index) => (
                 <Options
                   key={index}
@@ -251,7 +251,7 @@ const Dashboard = () => {
           <section className="mt-12">
             <div className="bg-gradient-to-r from-verida-green/20 to-verida-light-green/20 rounded-2xl p-8 border border-verida-green/30">
               <h3 className="text-2xl font-bold text-white mb-4">
-                Acciones Rápidas
+                Quick Actions
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <Link
@@ -259,7 +259,7 @@ const Dashboard = () => {
                   className="flex items-center space-x-3 p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-all"
                 >
                   <FaBuildingColumns className="text-verida-light-green text-xl" />
-                  <span className="text-white font-medium">Nueva Donación</span>
+                  <span className="text-white font-medium">New Donation</span>
                 </Link>
                 <Link
                   to="/communities"
@@ -267,7 +267,7 @@ const Dashboard = () => {
                 >
                   <FaPeopleGroup className="text-verida-purple text-xl" />
                   <span className="text-white font-medium">
-                    Ver Comunidades
+                    View Communities
                   </span>
                 </Link>
                 <Link
@@ -275,7 +275,7 @@ const Dashboard = () => {
                   className="flex items-center space-x-3 p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-all"
                 >
                   <FaUser className="text-verida-light-green text-xl" />
-                  <span className="text-white font-medium">Mi Perfil</span>
+                  <span className="text-white font-medium">My Profile</span>
                 </Link>
               </div>
             </div>
